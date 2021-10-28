@@ -2,7 +2,6 @@ package terrain
 
 import (
 	"app/common"
-	"fmt"
 )
 
 //go:generate moq -out ../rover/terrain_moq_test.go . Terrain
@@ -32,9 +31,7 @@ func (t *terrainImpl) GetName() string {
 
 func (t *terrainImpl) AddObject(object Object) {
 	l := object.Location()
-	fmt.Println("Loc here", l, "size", t.width, t.height)
 	if !t.IsLocationAvailable(l) {
-		fmt.Println("is not in boundaries")
 		object.SetLocation(DefaultStartLocation)
 	}
 	t.objects = append(t.objects, object)
